@@ -18,10 +18,6 @@ public class LinkedStack<T> implements StackInterface<T>
         depth = 0;
     }// end of default constructor
 
-    public LinkedStack(Node<T> topNode)
-    {
-        this.topNode = topNode;
-    }
     /**
      * Adds new entry to the top of this stack
      * @param newEntry entry to be added
