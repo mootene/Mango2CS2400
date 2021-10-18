@@ -1,5 +1,9 @@
 import java.util.Arrays;
 import java.util.EmptyStackException;
+/**
+ * Array Implementation of StackInterface
+ * @param <T> entry type
+ */
 
 public final class ResizeableArrayStack<T> implements StackInterface<T>
 {
@@ -12,7 +16,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
     public ResizeableArrayStack()
     {
         this(DEFAULT_CAPACITY);
-    }
+    }//end default constructor
 
     public ResizeableArrayStack(int initialCapacity)
     {
@@ -22,7 +26,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
         stack = tempStack;
         topIndex = -1;
         integrityOK = true;
-    }
+    }//end constructor
 
     private void checkCapacity(int capacity)
     {
@@ -39,6 +43,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             throw new SecurityException("ArrayStack object is corrupt");
         }
     }
+
+    /**
+     * Adds new entry to the top of the stack
+     * @param newEntry entry to be added
+     */
 
     public void push(T newEntry)
     {
@@ -57,6 +66,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             stack = Arrays.copyOf(stack, newLength);
         }
     }
+    /**
+     * Retrieves the top entry in the stack
+     * @return the top entry
+     * @throws EmptyStackException if it's empty before the call
+     */
 
     public T peek()
     {
@@ -70,6 +84,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             return stack[topIndex];
         }
     }
+    /**
+     * Removes and return's the stack's topmost entry
+     * @return the data in the old top entry of the stack
+     * @throws EmptyStackException if the stack is empty before the call
+     */
 
     public T pop()
     {
@@ -86,11 +105,18 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             return top;
         }
     }
+    /**
+     * checks if the stack is empty
+     * @return True if empty, false if not
+     */
     
     public boolean isEmpty()
     {
         return topIndex < 0;
     }
+    /**
+     * removes all the entries in the stack
+     */
 
     public void clear()
     {
@@ -102,4 +128,4 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             topIndex--;
         }
     }
-}
+}//end ResizeableArrayStack
