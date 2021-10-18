@@ -1,3 +1,4 @@
+//written by: Maya Tene 2021
 public class PostfixCalc
 {
     /**
@@ -41,7 +42,7 @@ public class PostfixCalc
         {
             if (c == ' ')
                 continue;
-            if (Character.isLetterOrDigit(c))
+            if (Character.isLetter(c))
             {
                 postfix.append(c);
                 continue;
@@ -84,4 +85,84 @@ public class PostfixCalc
         }
         return postfix.toString();
     }
+
+    /**
+     * converts a given character variable to a predetermined number value
+     * @param variable variable to be translated
+     * @return integer value of given variable character
+     */
+    public static int variableToValue(char variable)
+    {
+        int value = 0;
+        switch (variable)
+        {
+            case 'a':
+                value = 2;
+                break;
+            case 'b':
+                value = 3;
+                break;
+            case 'c':
+                value = 4;
+                break;
+            case 'd':
+                value = 5;
+                break;
+            case 'e':
+                value = 6;
+                break;
+            default:
+                value = 0;
+                break;
+        }
+        return value;
+    }
+
+    /**
+     * evaluates a given postfix notation
+     * @param postfix given postfix String
+     * @return postfix evaluation
+     */
+    public static int evaluatePostFix(String postfix)
+        {
+            ResizeableArrayStack<Integer> stack = new ResizeableArrayStack<Integer>();
+
+            for(int i = 0; i<postfix.length(); i++)
+            {
+                char c = postfix.charAt(i);
+
+                if(Character.isLetter(c))
+                {
+                    stack.push(variableToValue(c));
+                }
+
+                else
+                {
+                    int a = stack.pop();
+                    int b = stack.pop();
+
+                    switch(c)
+                    {
+                        case '+':
+                        stack.push(a+b);
+                        break;
+
+                        case '-':
+                        stack.push(b-a);
+                        break;
+
+                        case '/':
+                        stack.push(b/a);
+                        break;
+
+                        case '*':
+                        stack.push(a*b);
+
+                        default:
+                        break;
+                    }
+                }
+            }
+            return stack.pop();
+        }
 }
