@@ -1,14 +1,20 @@
 import java.util.Stack;
+import java.util.Scanner;
 
 public class ArrayStackTest 
 {
-    static int evaluatePostFix(String exp)
+    /**
+     * evaluates a given postfix notation
+     * @param postfix given postfix String
+     * @return postfix evaluation
+     */
+    public static int evaluatePostFix(String postfix)
     {
-        Stack<Integer> stack = new Stack<>();
+        ResizeableArrayStack<Integer> stack = new ResizeableArrayStack<Integer>();
 
-        for(int i = 0; i<exp.length(); i++)
+        for(int i = 0; i<postfix.length(); i++)
         {
-            char c = exp.charAt(i);
+            char c = postfix.charAt(i);
 
             if(Character.isDigit(c))
             {
@@ -17,21 +23,27 @@ public class ArrayStackTest
 
             else
             {
-                int value1 = stack.pop();
-                int value2 = stack.pop();
+                int a = stack.pop();
+                int b = stack.pop();
 
                 switch(c)
                 {
                     case '+':
-                    stack.push(value2+value1);
+                    stack.push(a+b);
                     break;
 
                     case '-':
-                    stack.push(value2-value1);
+                    stack.push(b-a);
                     break;
 
                     case '/':
-                    stack.push(value2/value1);
+                    stack.push(b/a);
+                    break;
+
+                    case '*':
+                    stack.push(a*b);
+
+                    default:
                     break;
                 }
             }
@@ -39,9 +51,12 @@ public class ArrayStackTest
         return stack.pop();
     }
 
+
     public static void main(String[] args)
     {
-        String exp = "231*+9-";
-        System.out.println("postfix evaluation: " + evaluatePostFix(exp));
+        Scanner s = new Scanner(System.in);
+        String post =s.nextLine();
+        int value = evaluatePostFix(post);
+        System.out.println(value);
     }
 }
