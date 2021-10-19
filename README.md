@@ -10,10 +10,10 @@ Array* files written by Jibriel \
 JavaDoc folder compiled by Jibriel \
 Answer Sheet completed by Maya and Jibriel \
 Javadoc Links:
-file:///C:/Users/Jibbers/Docs/Javadoc/forlinkedstack/LinkedStack.html
-file:///C:/Users/Jibbers/Docs/Javadoc/forpostfixcalc/PostfixCalc.html
-file:///C:/Users/Jibbers/Docs/Javadoc/forresizeablearraystack/ResizeableArrayStack.html
-file:///C:/Users/Jibbers/Docs/Javadoc/forstackinterface/StackInterface.html
+https://elastic-golick-b17eb6.netlify.app/linkedstack
+https://vigilant-visvesvaraya-49e795.netlify.app
+https://compassionate-heyrovsky-955e3b.netlify.app
+https://dreamy-lovelace-c4d706.netlify.app
 
 
 Link to Recording:https://livecsupomona-my.sharepoint.com/:v:/g/personal/jaustarz_cpp_edu/EWTg0Wo-ze9Nqb98-_5EKaQBHqpk5vrZ_DMOotQZHPnrPg?e=0EpwPZ
