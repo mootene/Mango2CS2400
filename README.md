@@ -1,6 +1,6 @@
 Mango 2 CS 2400
 ---------------
-Group Members: Maya Tene & Jibriel Ustarz(jaustarz) \
+Group Members: Maya Tene(mootene) & Jibriel Ustarz(jaustarz) \
 Linked* files written by Maya \
 StackInterface written by Maya \
 PostfixCalc written by Maya and Jibriel \
