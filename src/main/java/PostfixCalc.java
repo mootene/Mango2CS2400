@@ -125,44 +125,53 @@ public class PostfixCalc
      */
     public static int evaluatePostFix(String postfix)
         {
-            ResizeableArrayStack<Integer> stack = new ResizeableArrayStack<Integer>();
-
-            for(int i = 0; i<postfix.length(); i++)
+            ResizeableArrayStack<Integer> postfixstack = new ResizeableArrayStack<Integer>();
+            
+            while(!postfix.isEmpty())
             {
-                char c = postfix.charAt(i);
-
-                if(Character.isLetter(c))
+                char[] postfix = postfix.toCharArray();
+            
+                for(char c: postfix)
                 {
-                    stack.push(variableToValue(c));
-                }
+                    if(c == ' ')
+                    {
+                        continue;
+                    }
 
-                else
-                {
-                    int a = stack.pop();
-                    int b = stack.pop();
+                    if(Character.isLetter(c))
+                    {
+                        postfixstack.push(variableToValue(c));
+                    }
 
+                    else
+                    {
+                        int a = postfixstack.pop();
+                        int b = postfixstack.pop();
+                    }
                     switch(c)
                     {
+                        case '^':
+                            postfixstack.push(c);
+                            break;
                         case '+':
-                        stack.push(a+b);
-                        break;
-
+                            postfixstack.push(a+b);
+                            break;
                         case '-':
-                        stack.push(b-a);
-                        break;
-
-                        case '/':
-                        stack.push(b/a);
-                        break;
-
+                            postfixstack.push(b-a);
+                            break;
                         case '*':
-                        stack.push(a*b);
+                            postfixstack.push(a*b);
+                            break;
+                        case '/':
+                            postfixstack.push(a/b);
+                            break;
 
                         default:
                         break;
                     }
+
                 }
             }
-            return stack.pop();
+            return postfixstack.peek();
         }
 }

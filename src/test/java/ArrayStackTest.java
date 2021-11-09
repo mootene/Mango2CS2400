@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +13,16 @@ public class ArrayStackTest
     {
         ResizeableArrayStack<Integer> stack1 = new ResizeableArrayStack<>();
         ResizeableArrayStack<Integer> stack2 = new ResizeableArrayStack<>(75);
-        // push doubles size from 50 to 100 ... 640 before reaching max capcity of 10000 at next operation
-        assertEquals(6400, observedMaxCapactiy(stack1));
-        assertEquals(9600, observedMaxCapactiy(stack2));
+        assertTrue(isActualCapacity(50, stack1));
+        assertTrue(isActualCapacity(75, stack2));
     }
     /**
-     * returns the maximum index observed from repetitive push operations
+     * verifies the intended capacity of a ResizeableArrayStackObject
+     * @param expectedCapacity expected capacity of given stack
      * @param stack stack being tested
-     * @return observed largest index of stack
+     * @return true if actual and expected capacity are equal, false otherwise
      */
-    private int observedMaxCapactiy(ResizeableArrayStack<Integer> stack)
+    private boolean isActualCapacity(int expectedCapacity, ResizeableArrayStack<Integer> stack)
     {
         int observeDepth = 0;
         boolean atCapactiy = false;
@@ -39,7 +38,7 @@ public class ArrayStackTest
                 atCapactiy = true;
             }
         }
-        return observeDepth;
+        return (observeDepth == expectedCapacity);
     }
 
     public static void main(String[] args)
