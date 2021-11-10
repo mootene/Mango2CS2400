@@ -125,33 +125,26 @@ public class PostfixCalc
      */
     public static int evaluatePostFix(String postfix)
         {
-            ResizeableArrayStack<Integer> postfixstack = new ResizeableArrayStack<Integer>();
+            char[] character = postfix.toCharArray();
+            ResizeableArrayStack<Integer> postfixstack = new ResizeableArrayStack<Integer>(character.length);
             
             while(!postfix.isEmpty())
             {
-                char[] postfix = postfix.toCharArray();
-            
-                for(char c: postfix)
+                for(char c:character)
                 {
-                    if(c == ' ')
+                    if(Character.isDigit(c))
                     {
-                        continue;
+                        postfixstack.push(c-'0');
                     }
-
-                    if(Character.isLetter(c))
-                    {
-                        postfixstack.push(variableToValue(c));
-                    }
-
                     else
                     {
                         int a = postfixstack.pop();
                         int b = postfixstack.pop();
-                    }
-                    switch(c)
-                    {
+
+                        switch(c)
+                        {
                         case '^':
-                            postfixstack.push(c);
+                            postfixstack.push((int)Math.pow(a, b));
                             break;
                         case '+':
                             postfixstack.push(a+b);
@@ -169,8 +162,11 @@ public class PostfixCalc
                         default:
                         break;
                     }
-
+                        
+                    }
+                
                 }
+                   
             }
             return postfixstack.peek();
         }
